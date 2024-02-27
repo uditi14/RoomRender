@@ -6,6 +6,7 @@ import HomePage from "../screens/HomePage";
 import CategoriesPage from "../components/CategoriesPage";
 import AR from "../screens/AR";
 import List from "../screens/List";
+import ProductInfo from "../screens/ProductInfo";
 import ProductCard from "../components/productCard";
 import Login from "../screens/Login";
 import ComponentStack from "./ComponentStack";

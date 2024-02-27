@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import colors from "../utils/colors";
-
+// import { sofaData, bedData } from "../../Server/Data";
 const CategoriesPage = ({ navigation }) => {
   const categories = [
     { id: 1, name: "Living Room", img: require("../assets/living_room.jpg") },
@@ -39,7 +39,7 @@ const CategoriesPage = ({ navigation }) => {
             <Pressable
               onPress={() => {
                 navigation.navigate("Catalog");
-                console.log(item.name);
+                console.log(item.name.toLowerCase());
               }}
               style={styles.categoryItem}
             >
