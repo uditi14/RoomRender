@@ -1,4 +1,5 @@
-const sofaData = [
+const AllData={
+ livingroom : [
   {
     id: 1,
     image: require("../assets/Sofa/sofa1.jpg"),
@@ -14,7 +15,7 @@ const sofaData = [
   },
   {
     id: 2,
-    image: require("../assets/Sofa/sofa1.jpg"),
+    image: require("../assets/Sofa/sofa2.jpg"),
     title: "Leather Sectional Sofa",
     description:
       "A luxurious leather sectional sofa with adjustable headrests and built-in cup holders.",
@@ -27,7 +28,7 @@ const sofaData = [
   },
   {
     id: 3,
-    image: require("../assets/Sofa/sofa1.jpg"),
+    image: require("../assets/Sofa/sofa2.jpg"),
     title: "Classic Chesterfield Sofa",
     description:
       "An elegant and timeless Chesterfield sofa with button tufting and rolled arms.",
@@ -129,9 +130,9 @@ const sofaData = [
     },
     price: "38,000",
   },
-];
+],
 
-const bedData = [
+ bedroom : [
   {
     id: 1,
     image: require("../assets/Sofa/sofa1.jpg"),
@@ -262,6 +263,7 @@ const bedData = [
     },
     price: "70,000",
   },
-];
+]
+ }
 
-export { sofaData, bedData };
+export default AllData;
