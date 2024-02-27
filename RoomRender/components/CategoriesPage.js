@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import colors from "../utils/colors";
@@ -35,10 +36,16 @@ const CategoriesPage = ({ navigation }) => {
         <FlatList
           data={categories}
           renderItem={({ item }) => (
-            <View style={styles.categoryItem}>
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Catalog");
+                console.log(item.name);
+              }}
+              style={styles.categoryItem}
+            >
               <Image source={item.img} style={styles.categoryImage} />
               <Text style={styles.categoryText}>{item.name}</Text>
-            </View>
+            </Pressable>
           )}
           numColumns={2}
           columnWrapperStyle={styles.columnStyle}
