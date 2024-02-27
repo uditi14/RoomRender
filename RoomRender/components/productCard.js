@@ -1,22 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { sofaData, bedData } from "../utils/Data.js";
 
-const ProductCard = () => {
-  // Hardcoded values
+const ProductCard = ({ navigation, item }) => {
   const title = "Example Title";
   const price = "100";
+  console.log(sofaData);
+
+  const renderItem = ({ item }) => (
+    <Pressable
+      onPress={() => navigation.navigate("ProductInfo")}
+      style={styles.card}
+    >
+      <Image source={item.image} style={styles.image} />
+      <View style={styles.cardContent}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.price}>{item.price}</Text>
+      </View>
+    </Pressable>
+  );
 
   return (
-    <View style={styles.card}>
-      <Image
-        source={require("../assets/living_room.jpg")}
-        style={styles.image}
-      />
-      <View style={styles.cardContent}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>{price}</Text>
-      </View>
-    </View>
+    <Text>Demo</Text>
+    // Place array mapping code here
   );
 };
 
@@ -50,5 +56,4 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
-
 export default ProductCard;

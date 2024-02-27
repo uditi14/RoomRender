@@ -6,6 +6,7 @@ const colors = StyleSheet.create({
   blue: "#4b57d1",
   cream: "#faf3e1",
   orange: "#ff8633",
+  buttongray: "#808080",
 });
 
 export default colors;
