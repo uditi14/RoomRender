@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image,BackHandler, Pressable } from "react-native";
 import colors from "../utils/colors";
+import {Camera} from 'expo-camera'
 
 const Card = ({ title, illustration, backgroundColor }) => {
   return (
@@ -14,15 +15,52 @@ const Card = ({ title, illustration, backgroundColor }) => {
 };
 
 const ActionsSection = () => {
+  const [startCamera,setStartCamera] = React.useState(false)
+  let camera= Camera;
+  React.useEffect(() => {
+    const backAction = () => {
+      if (startCamera) {
+        setStartCamera(false);
+        return true;
+      }
+      return false;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, [startCamera]);
+  const __startCamera = async () => {
+    const {status} = await Camera.requestCameraPermissionsAsync()
+    if (status === 'granted') {
+      // start the camera
+      setStartCamera(true)
+    } else {
+      Alert.alert('Access denied')
+    }
+  }
   return (
-    <View>
+    <>
+    {startCamera ? (
+      <Camera
+        style={{flex: 1,width:"100%"}}
+        ref={(r) => {
+          camera = r
+        }}
+      ></Camera>
+    ) : (
+      <View>
       <Text style={actionSectionStyles.quickStart}>Quick Start:</Text>
       <View style={actionSectionStyles.container}>
-        <Card
-          title="Launch AR Camera"
-          illustration={require("../assets/ARcard.png")}
-          backgroundColor={colors.cream}
-        />
+        <Pressable
+        onPress={__startCamera}
+        >
+          <Card
+            title="Launch AR Camera"
+            illustration={require("../assets/ARcard.png")}
+            backgroundColor={colors.cream}
+          />
+        </Pressable>
         <Card
           title="Browse collections"
           illustration={require("../assets/BrowseCard.png")}
@@ -40,6 +78,8 @@ const ActionsSection = () => {
         />
       </View>
     </View>
+    )}
+    </>
   );
 };
 
@@ -50,15 +90,15 @@ const actionSectionStyles = StyleSheet.create({
     padding: 10,
   },
   container: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 18,
+    paddingRight: 18,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
   },
   card: {
-    width: "48%", // Adjust as needed
-    marginBottom: 20, // Adjust as needed
+    width: "2rem", 
+    marginBottom: 20, 
     borderRadius: 20,
     elevation: 3,
   },
