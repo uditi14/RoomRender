@@ -6,7 +6,9 @@ import HomePage from "../screens/HomePage";
 import CategoriesPage from "../components/CategoriesPage";
 import AR from "../screens/AR";
 import List from "../screens/List";
+import ProductCard from "../components/productCard";
 import Login from "../screens/Login";
+import ComponentStack from "./ComponentStack";
 import colors from "../utils/colors";
 
 const Tab = createBottomTabNavigator();
@@ -23,7 +25,7 @@ const RootNavigator = () => {
 
             if (route.name === "HomePage") {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "CategoriesPage") {
+            } else if (route.name === "CategoryStack") {
               iconName = focused ? "search-sharp" : "search-outline";
             } else if (route.name === "AR") {
               iconName = focused ? "camera-sharp" : "camera-outline";
@@ -42,7 +44,7 @@ const RootNavigator = () => {
 
             if (route.name === "HomePage") {
               label = "Home";
-            } else if (route.name === "CategoriesPage") {
+            } else if (route.name === "CategoryStack") {
               label = "Browse";
             } else if (route.name === "AR") {
               label = "AR";
@@ -66,14 +68,14 @@ const RootNavigator = () => {
           options={{ headerShown: false }}
         />
         <Tab.Screen
-          name="CategoriesPage"
-          component={CategoriesPage}
+          name="CategoryStack"
+          component={ComponentStack}
           options={{ headerShown: false }}
         />
         <Tab.Screen name="AR" component={AR} options={{ headerShown: false }} />
         <Tab.Screen
           name="List"
-          component={List}
+          component={ProductCard}
           options={{ headerShown: false }}
         />
         <Tab.Screen
