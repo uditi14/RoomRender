@@ -1,13 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import { sofaData, bedData } from "../utils/Data.js";
-
-const ProductCard = ({ navigation, item }) => {
-  const title = "Example Title";
-  const price = "100";
-  console.log(sofaData);
-
-  const renderItem = ({ item }) => (
+import AllData from "../utils/Data"
+const ProductCard = ({ route,navigation }) => {
+  const category=route.params.category;
+  const formattedCategory = category.replace(/\s+/g, "").toLowerCase();
+  let DataToDisplay=[];
+  DataToDisplay=AllData[formattedCategory]
+  const RenderItem = ({ item }) => (
     <Pressable
       onPress={() => navigation.navigate("ProductInfo")}
       style={styles.card}
@@ -19,11 +18,14 @@ const ProductCard = ({ navigation, item }) => {
       </View>
     </Pressable>
   );
-
+ 
   return (
-    <Text>Demo</Text>
-    // Place array mapping code here
-  );
+  <>
+    {DataToDisplay.map((item) => (
+      <RenderItem key={item.id} item={item} />
+    ))}
+  </>
+);
 };
 
 const styles = StyleSheet.create({
