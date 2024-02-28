@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Image,BackHandler, Pressable } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable} from "react-native";
 import colors from "../utils/colors";
-import {Camera} from 'expo-camera'
 
-const Card = ({ title, illustration, backgroundColor }) => {
+const Card = ({title, illustration, backgroundColor }) => {
   return (
     <View style={[actionSectionStyles.card, { backgroundColor }]}>
       <View style={actionSectionStyles.cardContent}>
@@ -14,46 +13,15 @@ const Card = ({ title, illustration, backgroundColor }) => {
   );
 };
 
-const ActionsSection = () => {
-  const [startCamera,setStartCamera] = React.useState(false)
-  let camera= Camera;
-  React.useEffect(() => {
-    const backAction = () => {
-      if (startCamera) {
-        setStartCamera(false);
-        return true;
-      }
-      return false;
-    };
-
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
-    return () => backHandler.remove();
-  }, [startCamera]);
-  const __startCamera = async () => {
-    const {status} = await Camera.requestCameraPermissionsAsync()
-    if (status === 'granted') {
-      // start the camera
-      setStartCamera(true)
-    } else {
-      Alert.alert('Access denied')
-    }
-  }
+const ActionsSection = ({navigation}) => {
   return (
-    <>
-    {startCamera ? (
-      <Camera
-        style={{flex: 1,width:"100%"}}
-        ref={(r) => {
-          camera = r
-        }}
-      ></Camera>
-    ) : (
       <View>
       <Text style={actionSectionStyles.quickStart}>Quick Start:</Text>
       <View style={actionSectionStyles.container}>
         <Pressable
-        onPress={__startCamera}
+        onPress={() => {
+          navigation.navigate("AR");
+        }}
         >
           <Card
             title="Launch AR Camera"
@@ -79,9 +47,6 @@ const ActionsSection = () => {
       </View>
     </View>
     )}
-    </>
-  );
-};
 
 const actionSectionStyles = StyleSheet.create({
   quickStart: {

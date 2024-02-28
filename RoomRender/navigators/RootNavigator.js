@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import HomePage from "../screens/HomePage";
 import CategoriesPage from "../components/CategoriesPage";
-import AR from "../screens/AR";
+import ARCam from "../screens/ARCam";
 import List from "../screens/List";
 import ProductInfo from "../screens/ProductInfo";
 import ProductCard from "../components/productCard";
@@ -73,7 +73,7 @@ const RootNavigator = () => {
           component={ComponentStack}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="AR" component={AR} options={{ headerShown: false }} />
+        <Tab.Screen name="AR" component={ARCam} options={{ headerShown: false }} />
         <Tab.Screen
           name="List"
           component={ProductCard}
