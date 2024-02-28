@@ -38,7 +38,9 @@ const CategoriesPage = ({ navigation }) => {
           renderItem={({ item }) => (
             <Pressable
               onPress={() => {
-                navigation.navigate("Catalog", { category: item.name.toLowerCase() });
+                navigation.navigate("Catalog", {
+                  category: item.name.toLowerCase(),
+                });
               }}
               style={styles.categoryItem}
             >

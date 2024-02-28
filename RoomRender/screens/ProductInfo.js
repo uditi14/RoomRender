@@ -9,25 +9,22 @@ import {
 } from "react-native";
 import colors from "../utils/colors";
 
-export default function ProductInfo() {
+export default function ProductInfo({ route }) {
+  const { item } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          source={require("../assets/living_room.jpg")}
-          style={styles.image}
-        />
+        <Image source={item.image} style={styles.image} />
       </View>
       <View style={styles.infoContainer}>
         {/* Title, description, dimensions, and price */}
-        <Text style={styles.title}>Beige 3-Seater Sofa</Text>
-        <Text style={styles.description}>
-          A comfortable and spacious 3 seater sofa made of the finest cloth and
-          base materials. A comfortable and spacious 3 seater sofa made of the
-          finest cloth and base materials.
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.description}>{item.description}</Text>
+        <Text style={styles.dimensions}>
+          {item.dimensions.width} * {item.dimensions.height} *{" "}
+          {item.dimensions.depth}
         </Text>
-        <Text style={styles.dimensions}>Dimensions:100*60*87</Text>
-        <Text style={styles.price}>Price: Rs.20,000</Text>
+        <Text style={styles.price}>{item.price}</Text>
       </View>
       <View style={styles.buttonsContainer}>
         {/* View in my room and Buy buttons */}
@@ -39,7 +36,7 @@ export default function ProductInfo() {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => Linking.openURL("https://www.google.com/")}
+          onPress={() => Linking.openURL(item.link)}
         >
           <Text style={styles.buttonText}>Buy</Text>
         </Pressable>
