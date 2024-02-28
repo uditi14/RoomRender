@@ -1,23 +1,31 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-
-const ProductCard = () => {
-  // Hardcoded values
-  const title = "Example Title";
-  const price = "100";
-
-  return (
-    <View style={styles.card}>
-      <Image
-        source={require("../assets/living_room.jpg")}
-        style={styles.image}
-      />
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import AllData from "../utils/Data"
+const ProductCard = ({ route,navigation }) => {
+  const category=route.params.category;
+  const formattedCategory = category.replace(/\s+/g, "").toLowerCase();
+  let DataToDisplay=[];
+  DataToDisplay=AllData[formattedCategory]
+  const RenderItem = ({ item }) => (
+    <Pressable
+      onPress={() => navigation.navigate("ProductInfo")}
+      style={styles.card}
+    >
+      <Image source={item.image} style={styles.image} />
       <View style={styles.cardContent}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>{price}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.price}>{item.price}</Text>
       </View>
-    </View>
+    </Pressable>
   );
+ 
+  return (
+  <>
+    {DataToDisplay.map((item) => (
+      <RenderItem key={item.id} item={item} />
+    ))}
+  </>
+);
 };
 
 const styles = StyleSheet.create({
@@ -50,5 +58,4 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
-
 export default ProductCard;
