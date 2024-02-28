@@ -1,14 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import AllData from "../utils/Data"
-const ProductCard = ({ route,navigation }) => {
-  const category=route.params.category;
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
+import AllData from "../utils/Data";
+const ProductCard = ({ route, navigation }) => {
+  const category = route.params.category;
   const formattedCategory = category.replace(/\s+/g, "").toLowerCase();
-  let DataToDisplay=[];
-  DataToDisplay=AllData[formattedCategory]
+  let DataToDisplay = [];
+  DataToDisplay = AllData[formattedCategory];
   const RenderItem = ({ item }) => (
     <Pressable
-      onPress={() => navigation.navigate("ProductInfo")}
+      onPress={() => navigation.navigate("ProductInfo", { item })}
       style={styles.card}
     >
       <Image source={item.image} style={styles.image} />
@@ -18,14 +25,14 @@ const ProductCard = ({ route,navigation }) => {
       </View>
     </Pressable>
   );
- 
+
   return (
-  <>
-    {DataToDisplay.map((item) => (
-      <RenderItem key={item.id} item={item} />
-    ))}
-  </>
-);
+    <ScrollView>
+      {DataToDisplay.map((item) => (
+        <RenderItem key={item.id} item={item} />
+      ))}
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -45,6 +52,7 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "90%",
     marginRight: 20,
+    resizeMode: "contain",
   },
   cardContent: {
     flex: 1,
