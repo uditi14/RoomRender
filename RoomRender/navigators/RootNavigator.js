@@ -76,7 +76,7 @@ const RootNavigator = () => {
         <Tab.Screen name="AR" component={ARCam} options={{ headerShown: false, unmountOnBlur: true }} />
         <Tab.Screen
           name="List"
-          component={ProductCard}
+          component={List}
           options={{ headerShown: false }}
         />
         <Tab.Screen
