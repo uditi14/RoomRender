@@ -19,5 +19,6 @@ const homePageStyles = StyleSheet.create({
   homePageContainer: {
     flex: 1,
     backgroundColor: colors.bg,
+    marginTop: "10%",
   },
 });
