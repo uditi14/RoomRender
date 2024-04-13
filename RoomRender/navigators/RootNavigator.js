@@ -73,7 +73,7 @@ const RootNavigator = () => {
           component={ComponentStack}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="AR" component={ARCam} options={{ headerShown: false }} />
+        <Tab.Screen name="AR" component={ARCam} options={{ headerShown: false, unmountOnBlur: true }} />
         <Tab.Screen
           name="List"
           component={ProductCard}
