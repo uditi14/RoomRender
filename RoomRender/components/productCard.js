@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import AllData from "../utils/Data";
+import colors from "../utils/colors";
 const ProductCard = ({ route, navigation }) => {
   const category = route.params.category;
   const formattedCategory = category.replace(/\s+/g, "").toLowerCase();
@@ -27,7 +28,7 @@ const ProductCard = ({ route, navigation }) => {
   );
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       {DataToDisplay.map((item) => (
         <RenderItem key={item.id} item={item} />
       ))}
@@ -36,6 +37,11 @@ const ProductCard = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.bg,
+    marginTop: "10%",
+  },
   card: {
     flexDirection: "row",
     alignItems: "center",
@@ -58,12 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
+    color: colors.cream,
     fontSize: 18,
     marginBottom: 5,
   },
   price: {
     fontSize: 16,
-    color: "#666",
+    color: colors.buttongray,
   },
 });
 export default ProductCard;
